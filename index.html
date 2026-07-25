@@ -229,6 +229,8 @@ h2.sec-h em{font-style:italic;color:var(--muted)}
 .portfolio h2.sec-h em{color:var(--accent)}
 .portfolio .sec-lead{color:rgba(255,255,255,.65)}
 .pf-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:60px}
+.pf-grid.pf-collapsed .pf-card:nth-child(n+3){display:none}
+.pf-more-wrap{margin-top:34px}
 .pf-card{display:block;color:inherit;border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:34px;background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0));transition:transform .5s var(--ease),border-color .5s,background .5s;position:relative;overflow:hidden}
 .pf-visit{display:inline-flex;align-items:center;gap:8px;margin-top:24px;font-size:.88rem;font-weight:600;color:var(--accent);opacity:.85;transition:opacity .3s var(--ease)}
 .pf-card:hover .pf-visit{opacity:1}
@@ -470,10 +472,10 @@ footer{background:var(--bg);color:rgba(255,255,255,.6);padding:70px 0 40px;borde
     <h2 class="sec-h reveal d1">Creator-led titles with <em>audiences that trust them.</em></h2>
     <p class="sec-lead reveal d2">Every partnership is live, intentional and approved. These are the newsletters people open first thing — built around consistency, personality and a real editorial voice.</p>
 
-    <div class="pf-grid">
+    <div class="pf-grid pf-collapsed" id="pfGrid">
       <a class="pf-card reveal" href="https://thebryanbrief.com/" target="_blank" rel="noopener">
         <div class="pf-top"><span class="pf-sport">Golf</span><span class="pf-num">01</span></div>
-        <h3>The Bryan Brief</h3>
+        <h3>The Bryan Bros</h3>
         <p>A creator-led newsletter built around a highly engaged golf audience — consistent publishing, a strong editorial voice, and native placements brands can trust.</p>
         <div class="pf-meta"><div class="m"><b>Golf</b><span>Category</span></div><div class="m"><b>Weekly</b><span>Cadence</span></div><div class="m"><b>Native</b><span>Placement</span></div></div>
         <span class="pf-visit">Visit the newsletter <span class="arr">→</span></span>
@@ -513,6 +515,9 @@ footer{background:var(--bg);color:rgba(255,255,255,.6);padding:70px 0 40px;borde
         <div class="pf-meta"><div class="m"><b>Tennis</b><span>Category</span></div><div class="m"><b>Soon</b><span>Status</span></div><div class="m"><b>Native</b><span>Placement</span></div></div>
         <span class="pf-visit">Register your interest <span class="arr">→</span></span>
       </a>
+    </div>
+    <div class="pf-more-wrap reveal d2">
+      <button type="button" id="pfMore" class="btn btn-ghost">See more titles <span class="arr">↓</span></button>
     </div>
     <div style="margin-top:44px" class="reveal">
       <a href="#book" class="btn btn-accent">Want your brand in these? Book a call <span class="arr">→</span></a>
@@ -670,7 +675,7 @@ footer{background:var(--bg);color:rgba(255,255,255,.6);padding:70px 0 40px;borde
       <div class="foot-cols">
         <div class="foot-col">
           <h5>Network</h5>
-          <a href="#network">The Bryan Brief</a>
+          <a href="#network">The Bryan Bros</a>
           <a href="#network">Kevin Pietersen</a>
           <a href="#network">Ian Poulter</a>
           <a href="#network">Zire Golf</a>
@@ -751,6 +756,17 @@ const io = new IntersectionObserver((entries) => {
   entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
 }, {threshold:0.14, rootMargin:'0px 0px -8% 0px'});
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// network "see more" — reveal the rest of the titles on demand
+const pfMore = document.getElementById('pfMore');
+if(pfMore){
+  pfMore.addEventListener('click', () => {
+    const grid = document.getElementById('pfGrid');
+    grid.classList.remove('pf-collapsed');
+    grid.querySelectorAll('.pf-card.reveal').forEach(el => el.classList.add('in'));
+    pfMore.parentElement.style.display = 'none';
+  });
+}
 
 // animated counters
 const counters = document.querySelectorAll('[data-count]');
