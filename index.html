@@ -223,6 +223,7 @@ h2.sec-h em{font-style:italic;color:var(--muted)}
 .pf-card:hover .pf-visit{opacity:1}
 .pf-card:hover .pf-visit .arr{transform:translateX(4px)}
 .pf-visit .arr{transition:transform .3s var(--ease)}
+.pf-card.soon{border-color:rgba(198,255,58,.45)}
 .pf-card:hover{transform:translateY(-6px);border-color:rgba(198,255,58,.5);background:linear-gradient(180deg,rgba(198,255,58,.06),rgba(255,255,255,0))}
 .pf-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:26px}
 .pf-sport{font-size:.74rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#0a0a0a;background:var(--accent);padding:6px 12px;border-radius:100px}
@@ -235,6 +236,13 @@ h2.sec-h em{font-style:italic;color:var(--muted)}
 .pf-meta .m span{font-size:.78rem;color:rgba(255,255,255,.5);margin-top:3px}
 
 /* ---------- Pricing ---------- */
+/* previous partners */
+.partner-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-top:56px}
+.partner{background:var(--paper);display:flex;align-items:center;justify-content:center;text-align:center;min-height:120px;padding:20px;font-family:var(--serif);font-weight:500;font-size:1.35rem;letter-spacing:-.01em;color:var(--muted);transition:background .3s var(--ease),color .3s var(--ease)}
+.partner:hover{background:var(--ink);color:var(--accent)}
+.partner.more{font-style:italic;font-size:1.05rem}
+@media (max-width:760px){.partner-grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:480px){.partner-grid{grid-template-columns:repeat(2,1fr)}}
 .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:60px}
 .price-card{border:1px solid var(--line);border-radius:22px;padding:38px 34px;background:var(--white);transition:transform .45s var(--ease),box-shadow .45s;display:flex;flex-direction:column}
 .price-card:hover{transform:translateY(-6px);box-shadow:0 30px 60px -34px rgba(0,0,0,.28)}
@@ -487,9 +495,39 @@ footer{background:var(--bg);color:rgba(255,255,255,.6);padding:70px 0 40px;borde
         <div class="pf-meta"><div class="m"><b>185K</b><span>Subscribers</span></div><div class="m"><b>Golf</b><span>Category</span></div><div class="m"><b>Native</b><span>Placement</span></div></div>
         <span class="pf-visit">Enquire about this title <span class="arr">→</span></span>
       </a>
+      <a class="pf-card soon reveal d1" href="#enquire">
+        <div class="pf-top"><span class="pf-sport soon-pill">Coming soon 👀</span><span class="pf-num">06</span></div>
+        <h3>Wimbledon Winner's Newsletter</h3>
+        <p>A brand-new newsletter fronted by a Wimbledon champion, launching soon. Get in early and partner with it from day one.</p>
+        <div class="pf-meta"><div class="m"><b>Tennis</b><span>Category</span></div><div class="m"><b>Soon</b><span>Status</span></div><div class="m"><b>Native</b><span>Placement</span></div></div>
+        <span class="pf-visit">Register your interest <span class="arr">→</span></span>
+      </a>
     </div>
     <div style="margin-top:44px" class="reveal">
       <a href="#book" class="btn btn-accent">Want your brand in these? Book a call <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PREVIOUS PARTNERS ============ -->
+<section class="sec" id="partners" style="padding-top:0">
+  <div class="wrap">
+    <span class="sec-tag reveal">Previous partners</span>
+    <h2 class="sec-h reveal d1">Brands that have <em>already run with us.</em></h2>
+    <p class="sec-lead reveal d2">A selection of the partners who've sponsored campaigns across our newsletters — from global tours to the brands redefining the game.</p>
+    <div class="partner-grid reveal d1">
+      <div class="partner">LIV Golf</div>
+      <div class="partner">TGL</div>
+      <div class="partner">Asian Tour</div>
+      <div class="partner">PopStroke</div>
+      <div class="partner">Dormie Network</div>
+      <div class="partner">Ship Sticks</div>
+      <div class="partner">18Birdies</div>
+      <div class="partner">Top100</div>
+      <div class="partner">Takomo</div>
+      <div class="partner">PAYNTR</div>
+      <div class="partner">Papatui</div>
+      <div class="partner more">…&amp; many more</div>
     </div>
   </div>
 </section>
@@ -533,7 +571,7 @@ footer{background:var(--bg);color:rgba(255,255,255,.6);padding:70px 0 40px;borde
   <div class="wrap">
     <span class="quote-mark reveal">“</span>
     <blockquote class="quote-big reveal d1">The placement felt like <em>part of the newsletter</em> — not an ad bolted on. That's exactly why the audience actually reads it.</blockquote>
-    <div class="quote-by reveal d2">— A Tracerrr brand partner</div>
+    <div class="quote-by reveal d2">— Erin Caroll, Head of Paid Media @ ShipSticks</div>
   </div>
 </section>
 
