@@ -14,6 +14,10 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://tracerrr.com" />
 
+<!-- Calendly popup widget (booking without leaving the page) -->
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
 <!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-6BKDJ0MG5W"></script>
 <script>
@@ -235,6 +239,26 @@ h2.sec-h em{font-style:italic;color:var(--muted)}
 .pf-more:hover{color:var(--accent)}
 .pf-more .arr{transition:transform .3s var(--ease)}
 .pf-more:hover .arr{transform:translateY(3px)}
+
+/* sticky mobile CTA */
+.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:9998;display:none;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(10,10,10,.92);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-top:1px solid rgba(255,255,255,.12);transform:translateY(110%);transition:transform .35s var(--ease)}
+.sticky-cta.show{transform:none}
+.sticky-cta-btn{display:flex;justify-content:center;align-items:center;gap:.5em;background:var(--accent);color:#0a0a0a;font-weight:600;font-family:var(--sans);font-size:1rem;border-radius:100px;padding:14px;box-shadow:0 8px 30px -8px rgba(198,255,58,.6)}
+@media (max-width:760px){.sticky-cta{display:block}}
+
+/* media kit */
+.mk-card{background:var(--ink);color:#fff;border-radius:24px;padding:44px;display:flex;flex-wrap:wrap;gap:28px;align-items:center;justify-content:space-between;position:relative;overflow:hidden}
+.mk-card h3{font-family:var(--serif);font-weight:500;font-size:1.9rem;letter-spacing:-.01em;margin-bottom:8px}
+.mk-card p{color:rgba(255,255,255,.65);max-width:46ch;font-size:1rem;line-height:1.55}
+.mk-copy{flex:1 1 320px}
+.mk-form{display:flex;gap:10px;flex-wrap:wrap;flex:0 1 auto}
+.mk-input{font-family:var(--sans);font-size:1rem;padding:14px 18px;border-radius:100px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);color:#fff;min-width:240px;outline:none}
+.mk-input:focus{border-color:var(--accent)}
+.mk-input::placeholder{color:rgba(255,255,255,.4)}
+#mkResult[hidden]{display:none}
+.mk-thanks{color:rgba(255,255,255,.8);margin-bottom:6px}
+.mk-download{display:inline-flex;align-items:center;gap:.5em;color:var(--accent);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+@media (max-width:600px){.mk-card{padding:30px}.mk-form{width:100%}.mk-input{flex:1;min-width:0}}
 .pf-card{display:block;color:inherit;border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:34px;background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0));transition:transform .5s var(--ease),border-color .5s,background .5s;position:relative;overflow:hidden}
 .pf-visit{display:inline-flex;align-items:center;gap:8px;margin-top:24px;font-size:.88rem;font-weight:600;color:var(--accent);opacity:.85;transition:opacity .3s var(--ease)}
 .pf-card:hover .pf-visit{opacity:1}
@@ -366,7 +390,7 @@ footer{background:var(--bg);color:rgba(255,255,255,.6);padding:70px 0 40px;borde
       <a class="nl" href="#creators">For Creators</a>
       <a class="nl" href="#network">The Network</a>
       <a class="nl" href="#pricing">Pricing</a>
-      <a class="nl btn btn-ghost nav-cta" href="#book">Book a call</a>
+      <a class="nl btn btn-ghost nav-cta js-book" href="#book">Book a call</a>
     </nav>
     <button class="menu-btn" id="menuBtn" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
@@ -381,7 +405,7 @@ footer{background:var(--bg);color:rgba(255,255,255,.6);padding:70px 0 40px;borde
     <h1 class="hero-h reveal d1">Attention,<br><em>not noise.</em></h1>
     <p class="hero-sub reveal d2">Tracerrr designs, writes and commercialises a network of high-engagement, creator-led newsletters in golf, cricket and beyond — audiences who <strong style="color:#fff">choose to read</strong>. We build and run every title, end to end.</p>
     <div class="hero-actions reveal d3">
-      <a href="#book" class="btn btn-accent">Book a call <span class="arr">→</span></a>
+      <a href="#book" class="btn btn-accent js-book">Book a call <span class="arr">→</span></a>
       <a href="#network" class="btn btn-ghost">See the network</a>
       <span class="hero-note">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c6ff3a" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
@@ -586,6 +610,28 @@ footer{background:var(--bg);color:rgba(255,255,255,.6);padding:70px 0 40px;borde
   </div>
 </section>
 
+<!-- ============ MEDIA KIT ============ -->
+<section class="sec" id="mediakit" style="padding-top:0">
+  <div class="wrap">
+    <div class="mk-card reveal">
+      <div class="mk-copy">
+        <h3>Not ready for a call yet?</h3>
+        <p>Get the Tracerrr media kit — network stats, every title, previous partners and full pricing in one PDF.</p>
+      </div>
+      <form id="mkForm" name="mediakit" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field" class="mk-form">
+        <input type="hidden" name="form-name" value="mediakit" />
+        <p style="display:none"><label>Don't fill this out: <input name="bot-field" /></label></p>
+        <input type="email" name="email" required placeholder="you@company.com" class="mk-input" aria-label="Work email" />
+        <button type="submit" class="btn btn-accent">Get the media kit</button>
+      </form>
+      <div id="mkResult" hidden>
+        <p class="mk-thanks">Done — grab your copy:</p>
+        <a class="mk-download" href="/tracerrr-media-kit.pdf" download>Download the Tracerrr media kit (PDF) ↓</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ TESTIMONIAL ============ -->
 <section class="sec quote-sec">
   <div class="wrap">
@@ -705,6 +751,11 @@ footer{background:var(--bg);color:rgba(255,255,255,.6);padding:70px 0 40px;borde
   </div>
 </footer>
 
+<!-- ============ STICKY MOBILE CTA ============ -->
+<div id="stickyCta" class="sticky-cta" aria-hidden="true">
+  <a href="#book" class="js-book sticky-cta-btn" id="stickyBook">Book a call <span class="arr">→</span></a>
+</div>
+
 <script>
 /* ============================================================
    👉 PASTE YOUR BOOKING LINK HERE (Calendly / SavvyCal / etc.)
@@ -716,6 +767,18 @@ const mailtoBook = "mailto:jake@tracerrr.com?subject=I'd%20like%20to%20book%20a%
 document.getElementById('bookBtn').setAttribute('href', BOOKING_URL || mailtoBook);
 if(BOOKING_URL){ document.getElementById('bookBtn').setAttribute('target','_blank'); }
 
+// Open Calendly in an in-page popup where possible; falls back to normal link behaviour
+function openBooking(e){
+  if(!(BOOKING_URL && window.Calendly)) return;
+  e.preventDefault();
+  Calendly.initPopupWidget({url: BOOKING_URL});
+  const el = e.currentTarget, href = (el.getAttribute && el.getAttribute('href')) || '';
+  if(window.gtag && !/calendly\.com/.test(href)){
+    gtag('event','book_call_click', {location: el.id || 'popup'});
+  }
+}
+document.querySelectorAll('.js-book, #bookBtn').forEach(el => el.addEventListener('click', openBooking));
+
 // GA4 conversion event: track click-throughs to book a call (Calendly or email)
 document.addEventListener('click', function(e){
   const a = e.target.closest('a');
@@ -725,6 +788,66 @@ document.addEventListener('click', function(e){
     gtag('event','book_call_click', {location: a.id || 'cta'});
   }
 });
+
+// UTM-personalised hero — ads land with utm_content=brands|creators
+(function(){
+  const persona = new URLSearchParams(location.search).get('utm_content');
+  if(persona !== 'brands' && persona !== 'creators') return;
+  const eyebrow = document.querySelector('.hero .eyebrow');
+  const sub = document.querySelector('.hero-sub');
+  const ghost = document.querySelector('.hero-actions .btn-ghost');
+  if(persona === 'brands'){
+    if(eyebrow) eyebrow.textContent = 'Newsletter advertising for brands';
+    if(sub) sub.innerHTML = 'Put your brand inside high-engagement, creator-led newsletters in golf &amp; cricket — <strong style="color:#fff">500K+ readers who choose to read</strong>. Native placements, clear pricing, handled end to end.';
+    if(ghost){ ghost.setAttribute('href', '#pricing'); ghost.textContent = 'See sponsorship pricing'; }
+  } else {
+    if(eyebrow) eyebrow.textContent = 'For creators & talent';
+    if(sub) sub.innerHTML = 'Got an audience? We design, write and commercialise your newsletter <strong style="color:#fff">end to end</strong> — you bring the following, we do the rest.';
+    if(ghost){ ghost.setAttribute('href', '#creators'); ghost.textContent = 'How it works for creators'; }
+    const duo = document.getElementById('creators');
+    if(duo){
+      const adv = duo.querySelector('.adv'), cre = duo.querySelector('.cre');
+      if(adv && cre){
+        adv.classList.remove('theme-dark'); adv.classList.add('theme-light');
+        cre.classList.remove('theme-light'); cre.classList.add('theme-dark');
+      }
+    }
+  }
+  if(window.gtag) gtag('event','hero_personalised',{persona: persona});
+})();
+
+// sticky mobile CTA — appears after the hero, never over the cookie banner
+const stickyCta = document.getElementById('stickyCta');
+function updateSticky(){
+  if(!stickyCta) return;
+  const cb = document.getElementById('cookieBar');
+  const cookieOpen = cb && !cb.hidden;
+  const show = window.scrollY > 550 && !cookieOpen;
+  stickyCta.classList.toggle('show', show);
+  stickyCta.setAttribute('aria-hidden', show ? 'false' : 'true');
+}
+window.addEventListener('scroll', updateSticky, {passive:true});
+setInterval(updateSticky, 800);
+
+// media kit form — AJAX to Netlify, then reveal the download
+const mkf = document.getElementById('mkForm');
+if(mkf){
+  mkf.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = mkf.querySelector('button[type=submit]');
+    const data = new URLSearchParams(new FormData(mkf)).toString();
+    btn.textContent = 'One sec…';
+    try{
+      const r = await fetch('/', {method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body:data});
+      if(!r.ok) throw new Error('bad status');
+      mkf.style.display = 'none';
+      document.getElementById('mkResult').hidden = false;
+      if(window.gtag) gtag('event','generate_lead',{form_name:'mediakit'});
+    }catch(err){
+      mkf.removeAttribute('id'); mkf.submit();
+    }
+  });
+}
 
 // year
 document.getElementById('yr').textContent = new Date().getFullYear();
