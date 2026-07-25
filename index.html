@@ -230,7 +230,11 @@ h2.sec-h em{font-style:italic;color:var(--muted)}
 .portfolio .sec-lead{color:rgba(255,255,255,.65)}
 .pf-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:60px}
 .pf-grid.pf-collapsed .pf-card:nth-child(n+3){display:none}
-.pf-more-wrap{margin-top:34px}
+.pf-more-wrap{margin-top:30px}
+.pf-more{background:none;border:0;cursor:pointer;font-family:var(--sans);font-size:.9rem;font-weight:500;letter-spacing:.01em;color:rgba(255,255,255,.55);display:inline-flex;align-items:center;gap:.45em;padding:4px 0;transition:color .25s var(--ease)}
+.pf-more:hover{color:var(--accent)}
+.pf-more .arr{transition:transform .3s var(--ease)}
+.pf-more:hover .arr{transform:translateY(3px)}
 .pf-card{display:block;color:inherit;border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:34px;background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0));transition:transform .5s var(--ease),border-color .5s,background .5s;position:relative;overflow:hidden}
 .pf-visit{display:inline-flex;align-items:center;gap:8px;margin-top:24px;font-size:.88rem;font-weight:600;color:var(--accent);opacity:.85;transition:opacity .3s var(--ease)}
 .pf-card:hover .pf-visit{opacity:1}
@@ -517,7 +521,7 @@ footer{background:var(--bg);color:rgba(255,255,255,.6);padding:70px 0 40px;borde
       </a>
     </div>
     <div class="pf-more-wrap reveal d2">
-      <button type="button" id="pfMore" class="btn btn-ghost">See more titles <span class="arr">↓</span></button>
+      <button type="button" id="pfMore" class="pf-more">See more <span class="arr">↓</span></button>
     </div>
     <div style="margin-top:44px" class="reveal">
       <a href="#book" class="btn btn-accent">Want your brand in these? Book a call <span class="arr">→</span></a>
