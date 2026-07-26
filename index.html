@@ -70,6 +70,20 @@
   gtag('config', 'G-6BKDJ0MG5W');
 </script>
 
+<!-- OpenAI Ads pixel — stub queues events immediately; network SDK loads only after cookie consent -->
+<script>
+  !function(w){if(w.oaiq)return;var q=function(){q.q.push(arguments)};q.q=[];w.oaiq=q}(window);
+  oaiq("init",{pixelId:"8ef55dfNKXLFu1pRscYXD2"});
+  function loadOaiPixel(){
+    try{
+      if(window.__oaiLoaded) return; window.__oaiLoaded=true;
+      var j=document.createElement('script'); j.async=1; j.src='https://bzrcdn.openai.com/sdk/oaiq.min.js';
+      var f=document.getElementsByTagName('script')[0]; f.parentNode.insertBefore(j,f);
+    }catch(e){}
+  }
+  try{ if(localStorage.getItem('tracerrr_consent')==='granted'){ loadOaiPixel(); } }catch(e){}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
@@ -813,6 +827,14 @@ function openBooking(e){
 }
 document.querySelectorAll('.js-book, #bookBtn').forEach(el => el.addEventListener('click', openBooking));
 
+// Completed Calendly bookings (popup widget) → conversion events
+window.addEventListener('message', function(e){
+  if(e.data && e.data.event === 'calendly.event_scheduled'){
+    if(window.oaiq) oaiq('measure','appointment_scheduled',{type:'customer_action'});
+    if(window.gtag) gtag('event','generate_lead',{form_name:'calendly_booking'});
+  }
+});
+
 // GA4 conversion event: track click-throughs to book a call (Calendly or email)
 document.addEventListener('click', function(e){
   const a = e.target.closest('a');
@@ -877,6 +899,7 @@ if(mkf){
       mkf.style.display = 'none';
       document.getElementById('mkResult').hidden = false;
       if(window.gtag) gtag('event','generate_lead',{form_name:'mediakit'});
+      if(window.oaiq) oaiq('measure','lead_created',{type:'customer_action'});
     }catch(err){
       mkf.removeAttribute('id'); mkf.submit();
     }
@@ -975,6 +998,7 @@ if(ef){
       ef.querySelectorAll('.fld, button[type=submit]').forEach(el => el.style.display='none');
       document.getElementById('enqSuccess').style.display='block';
       if(window.gtag){ gtag('event','generate_lead',{form_name:'enquiry', persona:(ef.querySelector('input[name="i-am-a"]:checked')||{}).value||''}); }
+      if(window.oaiq) oaiq('measure','lead_created',{type:'customer_action'});
     }catch(err){
       // fall back to a normal (non-AJAX) submit so nothing is ever lost
       ef.removeAttribute('id'); ef.submit();
@@ -1011,8 +1035,9 @@ if(ef){
   if(!stored){ bar.hidden=false; }
   function choose(v){
     try{localStorage.setItem('tracerrr_consent',v);}catch(e){}
-    if(v==='granted' && window.gtag){
-      gtag('consent','update',{'analytics_storage':'granted','ad_storage':'granted','ad_user_data':'granted','ad_personalization':'granted'});
+    if(v==='granted'){
+      if(window.gtag) gtag('consent','update',{'analytics_storage':'granted','ad_storage':'granted','ad_user_data':'granted','ad_personalization':'granted'});
+      if(window.loadOaiPixel) loadOaiPixel();
     }
     bar.hidden=true;
   }
