@@ -47,7 +47,7 @@
 </script>
 
 <!-- Calendly popup widget (booking without leaving the page) -->
-<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet"></noscript>
 <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 
 <!-- Google Analytics 4 -->
@@ -72,7 +72,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
 
 <style>
 :root{
@@ -255,7 +255,7 @@ h2.sec-h em{font-style:italic;color:var(--muted)}
 .step{padding:32px 26px;border:1px solid var(--line);border-radius:18px;background:var(--white);position:relative;transition:transform .4s var(--ease),border-color .4s}
 .step:hover{transform:translateY(-6px);border-color:var(--ink)}
 .step .st-num{font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--accent);background:var(--ink);width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:22px}
-.step h4{font-size:1.15rem;font-weight:600;margin-bottom:10px;letter-spacing:-.01em}
+.step h3{font-size:1.15rem;font-weight:600;margin-bottom:10px;letter-spacing:-.01em}
 .step p{font-size:.95rem;color:var(--muted);line-height:1.55}
 
 /* ---------- Portfolio ---------- */
@@ -359,7 +359,7 @@ h2.sec-h em{font-style:italic;color:var(--muted)}
 .faq-wrap{max-width:820px;margin:56px auto 0}
 .faq{border-bottom:1px solid var(--line)}
 .faq button{width:100%;background:none;border:none;cursor:pointer;text-align:left;padding:26px 0;display:flex;justify-content:space-between;align-items:center;gap:20px;font-family:var(--sans)}
-.faq button h4{font-size:1.15rem;font-weight:600;letter-spacing:-.01em;color:var(--ink)}
+.faq button h3{font-size:1.15rem;font-weight:600;letter-spacing:-.01em;color:var(--ink)}
 .faq .ic{flex:none;width:26px;height:26px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;transition:.35s var(--ease);font-size:1.1rem;color:var(--muted)}
 .faq.open .ic{background:var(--ink);color:var(--accent);border-color:var(--ink);transform:rotate(45deg)}
 .faq .ans{max-height:0;overflow:hidden;transition:max-height .45s var(--ease)}
@@ -380,10 +380,10 @@ footer{background:var(--bg);color:rgba(255,255,255,.6);padding:70px 0 40px;borde
 .foot-brand .logo{color:var(--white)}
 .foot-brand p{margin-top:16px;font-size:.95rem;line-height:1.6;color:rgba(255,255,255,.5)}
 .foot-cols{display:flex;gap:70px;flex-wrap:wrap}
-.foot-col h5{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:18px}
+.foot-col h3{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:18px}
 .foot-col a{display:block;font-size:.95rem;margin-bottom:12px;color:rgba(255,255,255,.7);transition:color .3s}
 .foot-col a:hover{color:var(--accent)}
-.foot-bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:30px;font-size:.85rem;color:rgba(255,255,255,.4)}
+.foot-bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:30px;font-size:.85rem;color:rgba(255,255,255,.55)}
 
 /* ---------- Responsive ---------- */
 @media (max-width:960px){
@@ -519,10 +519,10 @@ footer{background:var(--bg);color:rgba(255,255,255,.6);padding:70px 0 40px;borde
     <span class="sec-tag reveal">How it works</span>
     <h2 class="sec-h reveal d1">From brief to <em>live send</em> — handled end to end.</h2>
     <div class="steps">
-      <div class="step reveal"><div class="st-num">1</div><h4>Tell us your goal</h4><p>Book a call and share your product, audience and what a win looks like. No jargon, no long forms.</p></div>
-      <div class="step reveal d1"><div class="st-num">2</div><h4>We match the fit</h4><p>We recommend the titles whose audiences align with your brand — one newsletter or the whole network.</p></div>
-      <div class="step reveal d2"><div class="st-num">3</div><h4>Native placement</h4><p>Creators write the placement in their own voice, so it lands as content readers already trust.</p></div>
-      <div class="step reveal d3"><div class="st-num">4</div><h4>Send &amp; report</h4><p>Your sponsorship goes live and you get clear reporting — so scaling the next round is easy.</p></div>
+      <div class="step reveal"><div class="st-num">1</div><h3>Tell us your goal</h3><p>Book a call and share your product, audience and what a win looks like. No jargon, no long forms.</p></div>
+      <div class="step reveal d1"><div class="st-num">2</div><h3>We match the fit</h3><p>We recommend the titles whose audiences align with your brand — one newsletter or the whole network.</p></div>
+      <div class="step reveal d2"><div class="st-num">3</div><h3>Native placement</h3><p>Creators write the placement in their own voice, so it lands as content readers already trust.</p></div>
+      <div class="step reveal d3"><div class="st-num">4</div><h3>Send &amp; report</h3><p>Your sponsorship goes live and you get clear reporting — so scaling the next round is easy.</p></div>
     </div>
   </div>
 </section>
@@ -682,23 +682,23 @@ footer{background:var(--bg);color:rgba(255,255,255,.6);padding:70px 0 40px;borde
     <h2 class="sec-h reveal d1">The questions brands <em>ask first.</em></h2>
     <div class="faq-wrap">
       <div class="faq reveal">
-        <button><h4>How is pricing calculated?</h4><span class="ic">+</span></button>
+        <button><h3>How is pricing calculated?</h3><span class="ic">+</span></button>
         <div class="ans"><p>Simple: a flat rate per subscriber, per send. One-off sends are $0.08, multi-newsletter campaigns are $0.06, and multi-month lock-in partnerships are $0.04 — so you always know your cost before you commit.</p></div>
       </div>
       <div class="faq reveal">
-        <button><h4>What does a native placement actually look like?</h4><span class="ic">+</span></button>
+        <button><h3>What does a native placement actually look like?</h3><span class="ic">+</span></button>
         <div class="ans"><p>The creator writes your placement in their own voice, integrated into the flow of the newsletter. It reads as content the audience already trusts — which is exactly why recall and engagement are so much higher than display advertising.</p></div>
       </div>
       <div class="faq reveal">
-        <button><h4>Can I sponsor more than one newsletter?</h4><span class="ic">+</span></button>
+        <button><h3>Can I sponsor more than one newsletter?</h3><span class="ic">+</span></button>
         <div class="ans"><p>Absolutely. Many brands run across several titles at once. We handle the coordination, scheduling and reporting across the whole network — one partner, one invoice.</p></div>
       </div>
       <div class="faq reveal">
-        <button><h4>I'm a creator — how do I join the network?</h4><span class="ic">+</span></button>
+        <button><h3>I'm a creator — how do I join the network?</h3><span class="ic">+</span></button>
         <div class="ans"><p>We work alongside creators on structure, distribution and brand partnerships while you keep full creative control and ownership of your audience. One thing worth knowing before you book: the model works best for creators with 500,000+ followers on their main channel — ideally 1m+ — because that's the audience scale that makes a newsletter commercially meaningful from day one. If that's you, book a call and we'll walk you through how it works.</p></div>
       </div>
       <div class="faq reveal">
-        <button><h4>How quickly can a campaign go live?</h4><span class="ic">+</span></button>
+        <button><h3>How quickly can a campaign go live?</h3><span class="ic">+</span></button>
         <div class="ans"><p>Once we've agreed the fit, placements are typically scheduled into upcoming sends within days. Book a call and we'll give you real dates for the titles you're interested in.</p></div>
       </div>
     </div>
@@ -758,21 +758,21 @@ footer{background:var(--bg);color:rgba(255,255,255,.6);padding:70px 0 40px;borde
       </div>
       <div class="foot-cols">
         <div class="foot-col">
-          <h5>Network</h5>
+          <h3>Network</h3>
           <a href="#network">The Bryan Bros</a>
           <a href="#network">Kevin Pietersen</a>
           <a href="#network">Ian Poulter</a>
           <a href="#network">Zire Golf</a>
         </div>
         <div class="foot-col">
-          <h5>Company</h5>
+          <h3>Company</h3>
           <a href="#brands">For Brands</a>
           <a href="#creators">For Creators</a>
           <a href="#pricing">Pricing</a>
           <a href="#book">Book a call</a>
         </div>
         <div class="foot-col">
-          <h5>Contact</h5>
+          <h3>Contact</h3>
           <a href="mailto:jake@tracerrr.com">jake@tracerrr.com</a>
           <a href="#book">Book a call</a>
         </div>
