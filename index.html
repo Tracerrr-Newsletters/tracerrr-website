@@ -291,6 +291,7 @@ h2.sec-h em{font-style:italic;color:var(--muted)}
 .mk-thanks{color:rgba(255,255,255,.8);margin-bottom:6px}
 .mk-download{display:inline-flex;align-items:center;gap:.5em;color:var(--accent);font-weight:600;text-decoration:underline;text-underline-offset:3px}
 @media (max-width:600px){.mk-card{padding:30px}.mk-form{width:100%}.mk-input{flex:1;min-width:0}}
+.aud-note{margin:18px 0 22px;font-size:.85rem;opacity:.78;border-left:3px solid var(--accent);padding-left:12px;line-height:1.55}
 .pf-card{display:block;color:inherit;border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:34px;background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0));transition:transform .5s var(--ease),border-color .5s,background .5s;position:relative;overflow:hidden}
 .pf-visit{display:inline-flex;align-items:center;gap:8px;margin-top:24px;font-size:.88rem;font-weight:600;color:var(--accent);opacity:.85;transition:opacity .3s var(--ease)}
 .pf-card:hover .pf-visit{opacity:1}
@@ -505,6 +506,7 @@ footer{background:var(--bg);color:rgba(255,255,255,.6);padding:70px 0 40px;borde
           <li><span class="tick">✓</span> We source and manage every brand partnership</li>
           <li><span class="tick">✓</span> New revenue without sacrificing reader trust</li>
         </ul>
+        <p class="aud-note">Where we're the best fit: creators with <strong>500K+ followers</strong> on their main channel — ideally 1m+. That's the scale where a newsletter becomes a serious business from day one.</p>
         <a href="#book" class="btn aud-cta">Partner with us <span class="arr">→</span></a>
       </div>
     </div>
@@ -693,7 +695,7 @@ footer{background:var(--bg);color:rgba(255,255,255,.6);padding:70px 0 40px;borde
       </div>
       <div class="faq reveal">
         <button><h4>I'm a creator — how do I join the network?</h4><span class="ic">+</span></button>
-        <div class="ans"><p>We work alongside creators on structure, distribution and brand partnerships while you keep full creative control and ownership of your audience. Book a call and we'll walk you through how it works.</p></div>
+        <div class="ans"><p>We work alongside creators on structure, distribution and brand partnerships while you keep full creative control and ownership of your audience. One thing worth knowing before you book: the model works best for creators with 500,000+ followers on their main channel — ideally 1m+ — because that's the audience scale that makes a newsletter commercially meaningful from day one. If that's you, book a call and we'll walk you through how it works.</p></div>
       </div>
       <div class="faq reveal">
         <button><h4>How quickly can a campaign go live?</h4><span class="ic">+</span></button>
@@ -834,7 +836,7 @@ document.addEventListener('click', function(e){
     if(ghost){ ghost.setAttribute('href', '#pricing'); ghost.textContent = 'See sponsorship pricing'; }
   } else {
     if(eyebrow) eyebrow.textContent = 'For creators & talent';
-    if(sub) sub.innerHTML = 'Got an audience? We design, write and commercialise your newsletter <strong style="color:#fff">end to end</strong> — you bring the following, we do the rest.';
+    if(sub) sub.innerHTML = 'Got an audience? We design, write and commercialise your newsletter <strong style="color:#fff">end to end</strong> — you bring the following, we do the rest. Best fit: 500K+ followers on your main channel.';
     if(ghost){ ghost.setAttribute('href', '#creators'); ghost.textContent = 'How it works for creators'; }
     const duo = document.getElementById('creators');
     if(duo){
