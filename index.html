@@ -38,7 +38,7 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type":"Question","name":"How is pricing calculated?","acceptedAnswer":{"@type":"Answer","text":"Simple: a flat rate per subscriber, per send. One-off sends are $0.08, multi-newsletter campaigns are $0.06, and multi-month lock-in partnerships are $0.04 — so you always know your cost before you commit. Pricing is quoted in US dollars wherever you are based."}},
+    {"@type":"Question","name":"How is pricing calculated?","acceptedAnswer":{"@type":"Answer","text":"Simple: a flat rate per subscriber, per send. One-off sends are $0.08, multi-newsletter campaigns are $0.06, and multi-month lock-in partnerships are $0.05 — so you always know your cost before you commit. Pricing is quoted in US dollars wherever you are based."}},
     {"@type":"Question","name":"Are you only UK-based, and only golf and cricket?","acceptedAnswer":{"@type":"Answer","text":"Neither. On geography: our creators, readers and sponsors sit across the US, UK and Europe — American and British creators front titles in the network today, and the brands who have sponsored campaigns run from Florida to Finland. Pricing is quoted in US dollars for everyone, we invoice internationally, and if none of the call times suit your time zone, email jake@tracerrr.com and we will find one that does. On category: golf and cricket are simply where we built the model. A Wimbledon champion's newsletter is launching next, and nothing about how we design, write, grow and monetise a title is specific to sport. If a creator has a large, genuinely engaged audience, we are interested in the sector, whatever it is."}},
     {"@type":"Question","name":"What does a native placement actually look like?","acceptedAnswer":{"@type":"Answer","text":"The creator writes your placement in their own voice, integrated into the flow of the newsletter. It reads as content the audience already trusts — which is exactly why recall and engagement are so much higher than display advertising."}},
     {"@type":"Question","name":"Can I sponsor more than one newsletter?","acceptedAnswer":{"@type":"Answer","text":"Absolutely. Many brands run across several titles at once. We handle the coordination, scheduling and reporting across the whole network — one partner, one invoice."}},
@@ -726,7 +726,7 @@ footer{background:var(--bg);color:rgba(255,255,255,.6);padding:70px 0 40px;borde
       </div>
       <div class="price-card reveal d2">
         <div class="price-name">Lock-in</div>
-        <div class="price-amt">$0.04</div>
+        <div class="price-amt">$0.05</div>
         <div class="price-unit">per subscriber · per send</div>
         <p class="price-desc">Lock in multi-month partnerships across one or more newsletters and access our most advantageous pricing.</p>
         <a href="#book" class="btn btn-outline">Build a partnership</a>
@@ -775,7 +775,7 @@ footer{background:var(--bg);color:rgba(255,255,255,.6);padding:70px 0 40px;borde
     <div class="faq-wrap">
       <div class="faq reveal">
         <button><h3>How is pricing calculated?</h3><span class="ic">+</span></button>
-        <div class="ans"><p>Simple: a flat rate per subscriber, per send. One-off sends are $0.08, multi-newsletter campaigns are $0.06, and multi-month lock-in partnerships are $0.04 — so you always know your cost before you commit. Rates are quoted in US dollars wherever you're based.</p></div>
+        <div class="ans"><p>Simple: a flat rate per subscriber, per send. One-off sends are $0.08, multi-newsletter campaigns are $0.06, and multi-month lock-in partnerships are $0.05 — so you always know your cost before you commit. Rates are quoted in US dollars wherever you're based.</p></div>
       </div>
       <div class="faq reveal">
         <button><h3>Are you only UK-based, and only golf and cricket?</h3><span class="ic">+</span></button>
@@ -1044,7 +1044,7 @@ const cio = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if(!e.isIntersecting) return;
     const el = e.target;
-    // special-case the "$0.04" tile
+    // special-case any raw-value tile (e.g. the price tiles)
     if(el.dataset.raw){ el.textContent = (el.dataset.prefix||'') + el.dataset.raw + (el.dataset.suffix||''); cio.unobserve(el); return; }
     const target = +el.dataset.count, pre = el.dataset.prefix||'', suf = el.dataset.suffix||'';
     let start = 0; const dur = 1400, t0 = performance.now();
