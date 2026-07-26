@@ -40,6 +40,7 @@
     {"@type":"Question","name":"How is pricing calculated?","acceptedAnswer":{"@type":"Answer","text":"Simple: a flat rate per subscriber, per send. One-off sends are $0.08, multi-newsletter campaigns are $0.06, and multi-month lock-in partnerships are $0.04 — so you always know your cost before you commit."}},
     {"@type":"Question","name":"What does a native placement actually look like?","acceptedAnswer":{"@type":"Answer","text":"The creator writes your placement in their own voice, integrated into the flow of the newsletter. It reads as content the audience already trusts — which is exactly why recall and engagement are so much higher than display advertising."}},
     {"@type":"Question","name":"Can I sponsor more than one newsletter?","acceptedAnswer":{"@type":"Answer","text":"Absolutely. Many brands run across several titles at once. We handle the coordination, scheduling and reporting across the whole network — one partner, one invoice."}},
+    {"@type":"Question","name":"Can you get us in front of the creators beyond the newsletter?","acceptedAnswer":{"@type":"Answer","text":"Yes — with one honest caveat. We don't represent these creators; we run newsletters with them. But if you want their main channels — YouTube integrations, appearances, or opportunities like Your Golf Tour — we'll make a warm introduction to the people who handle those deals directly."}},
     {"@type":"Question","name":"I'm a creator — how do I join the network?","acceptedAnswer":{"@type":"Answer","text":"We work alongside creators on structure, distribution and brand partnerships while you keep full creative control and ownership of your audience. Book a call and we'll walk you through how it works."}},
     {"@type":"Question","name":"How quickly can a campaign go live?","acceptedAnswer":{"@type":"Answer","text":"Once we've agreed the fit, placements are typically scheduled into upcoming sends within days. Book a call and we'll give you real dates for the titles you're interested in."}}
   ]
@@ -361,6 +362,20 @@ h2.sec-h em{font-style:italic;color:var(--muted)}
 .seg input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
 .seg label:has(input:checked){border-color:var(--ink);background:var(--ink);color:var(--paper)}
 .enq-success{display:none;margin-top:8px;padding:14px 16px;background:rgba(74,222,128,.14);border:1px solid rgba(74,222,128,.5);border-radius:12px;color:#166534;font-size:.95rem;font-weight:500}
+/* main-channel introductions */
+.intro-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:start;margin-top:8px}
+.intro-feature{background:var(--ink);color:#fff;border-radius:24px;padding:44px;position:relative;overflow:hidden}
+.intro-feature::after{content:"";position:absolute;top:-40%;right:-25%;width:70%;height:130%;background:radial-gradient(circle,rgba(198,255,58,.16),transparent 65%);pointer-events:none}
+.intro-kicker{font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+.intro-feature h3{font-family:var(--serif);font-weight:500;font-size:2.2rem;letter-spacing:-.01em;margin-bottom:14px}
+.intro-p{color:rgba(255,255,255,.75);line-height:1.65;font-size:1rem;position:relative}
+.intro-facts{list-style:none;display:flex;gap:30px;margin:28px 0 0;padding:0;flex-wrap:wrap;position:relative}
+.intro-facts li{font-size:.85rem;color:rgba(255,255,255,.65)}
+.intro-facts strong{display:block;font-family:var(--serif);font-size:1.75rem;color:#fff;font-weight:600;margin-bottom:4px}
+.intro-note{margin-top:26px;font-size:.83rem;color:rgba(255,255,255,.55);line-height:1.55;position:relative;border-left:3px solid var(--accent);padding-left:12px}
+.fld select{font-family:var(--sans);font-size:1rem;padding:13px 15px;border:1px solid var(--line);border-radius:12px;background:var(--paper);color:var(--ink);width:100%;transition:border-color .25s,box-shadow .25s}
+.fld select:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 3px rgba(10,10,10,.06)}
+@media (max-width:880px){.intro-grid{grid-template-columns:1fr;gap:28px}.intro-feature{padding:32px}}
 
 /* ---------- Testimonial ---------- */
 .quote-sec{background:var(--paper-2)}
@@ -624,6 +639,47 @@ footer{background:var(--bg);color:rgba(255,255,255,.6);padding:70px 0 40px;borde
   </div>
 </section>
 
+<!-- ============ MAIN-CHANNEL INTRODUCTIONS ============ -->
+<section class="sec" id="introductions">
+  <div class="wrap">
+    <span class="sec-tag reveal">Beyond the newsletter</span>
+    <h2 class="sec-h reveal d1">Want their <em>main channels?</em> We'll open the door.</h2>
+    <p class="sec-lead reveal d2">To be clear: we don't represent these creators — we build and run newsletters with them. But years inside their world mean we know exactly who does their biggest deals. If your brand wants more than the inbox — YouTube integrations, appearances, event sponsorship — tell us what you're after and we'll make a warm introduction to the right people.</p>
+
+    <div class="intro-grid">
+      <div class="intro-feature reveal">
+        <div class="intro-kicker">Featured opportunity · 2026</div>
+        <h3>Your Golf Tour</h3>
+        <p class="intro-p">The $1m tour built by YouTube golf itself — founded by Grant Horvat and the Bryan Bros, with a 16-player roster of the game's biggest creators and a finale at Wynn Golf Club, Las Vegas. If your brand wants to be part of a property like this, we can put you directly in touch with the people behind the tour and its players.</p>
+        <ul class="intro-facts">
+          <li><strong>$1m</strong> prize purse</li>
+          <li><strong>16</strong> creator roster</li>
+          <li><strong>4</strong> events in 2026</li>
+        </ul>
+        <p class="intro-note">We facilitate the introduction; deals are done directly with the creators' own representatives. No agency markup, no middleman on the deal itself.</p>
+      </div>
+      <form class="enq-form reveal d1" name="intro" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="introForm">
+        <input type="hidden" name="form-name" value="intro" />
+        <p style="display:none"><label>Don't fill this out if you're human: <input name="bot-field" /></label></p>
+        <div class="fld"><label for="in-nm">Name</label><input id="in-nm" name="name" required placeholder="Your name"></div>
+        <div class="fld"><label for="in-em">Work email</label><input id="in-em" type="email" name="email" required placeholder="you@brand.com"></div>
+        <div class="fld"><label for="in-br">Brand / company</label><input id="in-br" name="brand" required placeholder="Brand name"></div>
+        <div class="fld"><label for="in-int">I'm interested in…</label>
+          <select id="in-int" name="interest">
+            <option>Your Golf Tour</option>
+            <option>Creator YouTube integrations</option>
+            <option>Appearances &amp; events</option>
+            <option>Not sure yet — tell me more</option>
+          </select>
+        </div>
+        <div class="fld"><label for="in-msg">Anything else?</label><textarea id="in-msg" name="message" rows="3" placeholder="Budget range, timing, what a win looks like…"></textarea></div>
+        <button type="submit" class="btn btn-dark" style="width:100%;justify-content:center">Request an introduction <span class="arr">→</span></button>
+        <p class="enq-success" id="introSuccess">Received — we'll come back within one business day with next steps.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
 <!-- ============ PRICING ============ -->
 <section class="sec" id="pricing">
   <div class="wrap">
@@ -706,6 +762,10 @@ footer{background:var(--bg);color:rgba(255,255,255,.6);padding:70px 0 40px;borde
       <div class="faq reveal">
         <button><h3>Can I sponsor more than one newsletter?</h3><span class="ic">+</span></button>
         <div class="ans"><p>Absolutely. Many brands run across several titles at once. We handle the coordination, scheduling and reporting across the whole network — one partner, one invoice.</p></div>
+      </div>
+      <div class="faq reveal">
+        <button><h3>Can you get us in front of the creators beyond the newsletter?</h3><span class="ic">+</span></button>
+        <div class="ans"><p>Yes — with one honest caveat. We don't represent these creators; we run newsletters with them. But if you want their main channels — YouTube integrations, appearances, or opportunities like Your Golf Tour — we'll make a warm introduction to the people who handle those deals directly. Tell us what you're after via the introductions form and we'll open the door.</p></div>
       </div>
       <div class="faq reveal">
         <button><h3>I'm a creator — how do I join the network?</h3><span class="ic">+</span></button>
@@ -1002,6 +1062,27 @@ if(ef){
     }catch(err){
       // fall back to a normal (non-AJAX) submit so nothing is ever lost
       ef.removeAttribute('id'); ef.submit();
+    }
+  });
+}
+
+// introductions form — submit to Netlify via AJAX, stay on page
+const inf = document.getElementById('introForm');
+if(inf){
+  inf.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = inf.querySelector('button[type=submit]');
+    const data = new URLSearchParams(new FormData(inf)).toString();
+    btn.textContent = 'Sending…';
+    try{
+      const r = await fetch('/', {method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body:data});
+      if(!r.ok) throw new Error('bad status');
+      inf.querySelectorAll('.fld, button[type=submit]').forEach(el => el.style.display='none');
+      document.getElementById('introSuccess').style.display='block';
+      if(window.gtag){ gtag('event','generate_lead',{form_name:'intro', interest:(inf.querySelector('#in-int')||{}).value||''}); }
+      if(window.oaiq) oaiq('measure','lead_created',{type:'customer_action'});
+    }catch(err){
+      inf.removeAttribute('id'); inf.submit();
     }
   });
 }
