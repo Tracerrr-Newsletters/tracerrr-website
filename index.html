@@ -1126,5 +1126,140 @@ if(inf){
   document.getElementById('cookieDecline').addEventListener('click',function(){choose('denied');});
 })();
 </script>
+
+<!-- Behavioural analytics: scroll depth, section attention, CTA interest, exit point -->
+<script>
+(function(){
+  function ev(name, params){ if(window.gtag) gtag('event', name, params||{}); }
+
+  /* ---------- 1. Scroll depth milestones ---------- */
+  var marks = [25,50,75,90], fired = {};
+  function checkScroll(){
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    if(h <= 0) return;
+    var pct = Math.round((window.scrollY / h) * 100);
+    marks.forEach(function(m){
+      if(pct >= m && !fired[m]){
+        fired[m] = true;
+        ev('scroll_depth', {percent_scrolled: m});
+      }
+    });
+  }
+
+  /* ---------- 2. Section attention (which blocks get read) ---------- */
+  var SECTIONS = {
+    top:'Hero', brands:'Trusted by brands', how:'How it works',
+    network:'The network', partners:'Partners', introductions:'Main-channel introductions',
+    pricing:'Pricing', mediakit:'Media kit', faq:'FAQ',
+    enquire:'Enquiry form', book:'Final CTA'
+  };
+  var seen = {}, enter = {}, dwell = {};
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        var id = en.target.id, label = SECTIONS[id] || id;
+        if(en.isIntersecting){
+          enter[id] = Date.now();
+          if(!seen[id]){
+            seen[id] = true;
+            ev('section_view', {section_id: id, section_name: label});
+          }
+        } else if(enter[id]){
+          dwell[id] = (dwell[id]||0) + Math.round((Date.now()-enter[id])/1000);
+          enter[id] = 0;
+        }
+      });
+    }, {threshold: 0.4});
+    Object.keys(SECTIONS).forEach(function(id){
+      var el = document.getElementById(id);
+      if(el) io.observe(el);
+    });
+  }
+
+  /* ---------- 3. Deepest point reached + time on each section, sent on exit ---------- */
+  var start = Date.now(), maxPct = 0, lastSection = '';
+  function trackMax(){
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    if(h > 0){
+      var p = Math.round((window.scrollY / h) * 100);
+      if(p > maxPct) maxPct = Math.min(p, 100);
+    }
+    var mid = window.scrollY + window.innerHeight/2;
+    Object.keys(SECTIONS).forEach(function(id){
+      var el = document.getElementById(id);
+      if(el && mid >= el.offsetTop && mid < el.offsetTop + el.offsetHeight) lastSection = id;
+    });
+  }
+  var ticking = false;
+  window.addEventListener('scroll', function(){
+    if(ticking) return; ticking = true;
+    window.requestAnimationFrame(function(){ checkScroll(); trackMax(); ticking = false; });
+  }, {passive:true});
+
+  var sentExit = false;
+  function sendExit(){
+    if(sentExit) return; sentExit = true;
+    Object.keys(enter).forEach(function(id){
+      if(enter[id]) dwell[id] = (dwell[id]||0) + Math.round((Date.now()-enter[id])/1000);
+    });
+    var best = '', bestT = 0;
+    Object.keys(dwell).forEach(function(id){ if(dwell[id] > bestT){ bestT = dwell[id]; best = id; } });
+    ev('page_exit', {
+      max_scroll: maxPct,
+      seconds_on_page: Math.round((Date.now()-start)/1000),
+      exit_section: lastSection || 'top',
+      most_read_section: best || 'top',
+      most_read_seconds: bestT
+    });
+  }
+  document.addEventListener('visibilitychange', function(){
+    if(document.visibilityState === 'hidden') sendExit();
+  });
+  window.addEventListener('pagehide', sendExit);
+
+  /* ---------- 4. Interest signals: every meaningful click ---------- */
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a, button');
+    if(!a) return;
+    var txt = (a.textContent||'').replace(/\s+/g,' ').trim().slice(0,60);
+    var href = a.getAttribute('href') || '';
+
+    if(a.matches('.js-book, #bookBtn')){
+      var where = a.id === 'stickyBook' ? 'sticky bar' :
+                  a.closest('#nav') ? 'nav' :
+                  a.closest('.hero') ? 'hero' :
+                  a.closest('#book') ? 'final CTA' : 'other';
+      ev('cta_click', {cta_location: where, cta_text: txt, max_scroll_at_click: maxPct});
+      return;
+    }
+    if(a.closest('.faq')){ ev('faq_open', {question: txt}); return; }
+    if(/^mailto:/i.test(href)){ ev('email_click', {link_url: href}); return; }
+    if(/^https?:/i.test(href) && href.indexOf(location.host) === -1){
+      ev('outbound_click', {link_url: href, link_text: txt});
+      return;
+    }
+    if(href.charAt(0) === '#' && href.length > 1){
+      ev('anchor_nav', {target_section: href.slice(1), link_text: txt});
+    }
+  }, true);
+
+  /* ---------- 5. Form engagement (started vs completed) ---------- */
+  var FORMS = {mkForm:'mediakit', enquiryForm:'enquiry', introForm:'intro'};
+  Object.keys(FORMS).forEach(function(fid){
+    var f = document.getElementById(fid);
+    if(!f) return;
+    var started = false;
+    f.addEventListener('focusin', function(){
+      if(started) return; started = true;
+      ev('form_start', {form_name: FORMS[fid]});
+    });
+  });
+
+  /* ---------- 6. Rage / hesitation: 30s with no scroll past the hero ---------- */
+  setTimeout(function(){
+    if(maxPct < 10) ev('bounced_at_hero', {seconds_on_page: 30});
+  }, 30000);
+})();
+</script>
 </body>
 </html>
