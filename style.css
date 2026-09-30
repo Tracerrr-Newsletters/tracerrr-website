@@ -547,3 +547,6 @@ html{scroll-padding-top:calc(var(--hh,84px) + 12px)}
 @media(min-width:701px){.hero-art{transform:translateX(-7%)}}
 @media(min-width:1700px){.hero-art{transform:translateX(-4%)}}
 @media(min-width:701px) and (max-width:1199px){.paper-switch .book-jacket{padding-right:30%!important}.paper-green .book-jacket{padding-left:30%!important}.paper-switch .paper-name,.paper-green .paper-name{font-size:18px!important}}
+.live-label{max-width:none;white-space:nowrap}
+@media(max-width:420px){.live-label{white-space:normal}}
+@media(max-width:560px){.live-total{flex-wrap:wrap;row-gap:6px}.live-label{white-space:nowrap;flex-basis:100%;padding-left:24px}}
