@@ -550,3 +550,31 @@ html{scroll-padding-top:calc(var(--hh,84px) + 12px)}
 .live-label{max-width:none;white-space:nowrap}
 @media(max-width:420px){.live-label{white-space:normal}}
 @media(max-width:560px){.live-total{flex-wrap:wrap;row-gap:6px}.live-label{white-space:nowrap;flex-basis:100%;padding-left:24px}}
+
+/* ---------- Hero refinements ---------- */
+.hero-description{margin-bottom:12px}
+.hero-benefit{font-size:17px;line-height:1.5;color:#3b3b37;max-width:27em;margin:0 0 26px}
+.hero-actions{display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+.hero-link{font-size:15px;font-weight:600;border-bottom:1px solid currentColor;padding-bottom:2px}
+.hero-link:hover{color:var(--orange)}
+.live-total{margin-top:30px;gap:12px}
+.live-number{font-size:clamp(28px,2.7vw,40px);letter-spacing:-.04em}
+.live-label{font-size:14px;font-weight:500;color:#3b3b37}
+.live-dot{width:8px;height:8px}
+
+/* Books as premium objects: one spine construction, softer shadows, calmer angles. */
+.paper{box-shadow:1px 1px 0 #0000001f,0 18px 30px -18px #0006,0 6px 12px -8px #0003!important;border-radius:2px 4px 4px 2px}
+.paper:hover{box-shadow:1px 1px 0 #0000001f,0 26px 36px -20px #0006,0 8px 14px -8px #0003!important}
+.paper:before{width:14px;background:linear-gradient(90deg,#00000059 0,#ffffff1f 22%,#00000033 45%,#ffffff14 60%,#0000 100%)!important}
+.paper:after{top:4px;bottom:-4px;right:-7px;width:8px;border-right-width:2px!important;border-bottom-width:2px!important;box-shadow:none!important}
+.paper-bryan{transform:rotate(0deg) rotateY(-6deg)}
+.paper-bryan:hover{transform:rotateY(-3deg) translateY(-8px)}
+.paper-switch{transform:rotate(-3deg) rotateY(-7deg)}
+.paper-switch:hover{transform:rotate(-1.5deg) rotateY(-4deg) translateY(-8px)}
+.paper-green{transform:rotate(3deg) rotateY(-7deg)}
+.paper-green:hover{transform:rotate(1.5deg) rotateY(-4deg) translateY(-8px)}
+@media(max-width:700px){.paper-bryan{transform:rotate(0deg)}.paper-switch{transform:rotate(-4deg)}.paper-green{transform:rotate(4deg)}.hero-benefit{font-size:16px}.hero-actions{gap:18px}}
+.paper{cursor:pointer}
+.paper-green img{object-position:center 12%}
+.green-art img{object-position:center 18%}
+@media(min-width:701px) and (max-width:1199px){.hero-benefit{max-width:340px;font-size:16px}}
