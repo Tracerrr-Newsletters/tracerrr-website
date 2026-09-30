@@ -542,3 +542,8 @@ html{scroll-padding-top:calc(var(--hh,84px) + 12px)}
 .read-art .edition-label{margin-top:0}
 .read-art:before{background:linear-gradient(180deg,#070b08e6 0%,#070b0866 24%,transparent 40%,transparent 78%,#070b08b3 92%,#070b08 100%)}
 @media(max-width:700px){.read-art .publication-coverline{font-size:15px;margin-bottom:6px}}
+
+/* Hero books: nudge the group left on wider screens so the right-hand book isn't clipped. */
+@media(min-width:701px){.hero-art{transform:translateX(-7%)}}
+@media(min-width:1700px){.hero-art{transform:translateX(-4%)}}
+@media(min-width:701px) and (max-width:1199px){.paper-switch .book-jacket{padding-right:30%!important}.paper-green .book-jacket{padding-left:30%!important}.paper-switch .paper-name,.paper-green .paper-name{font-size:18px!important}}
